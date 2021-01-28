@@ -169,5 +169,26 @@ namespace TamagotchiAPI.Controllers
         {
             return _context.Pets.Any(pet => pet.Id == id);
         }
+
+        [HttpPost("{id}/playtimes")]
+        public async Task<ActionResult<Playtime>> PlaytimeForPet(int id)
+        {
+            var pet = await _context.Pets.FindAsync(id);
+            if (pet == null)
+            {
+                return NotFound();
+            }
+            Playtime playtimes = new Playtime();
+            playtimes.PetId = pet.Id;
+            playtimes.When = DateTime.Now;
+
+            pet.HappinessLevel += 5;
+            pet.HungerLevel += 3;
+
+            _context.Playtimes.Add(playtimes);
+            await _context.SaveChangesAsync();
+
+            return Ok(playtimes);
+        }
     }
 }
