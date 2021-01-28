@@ -125,6 +125,10 @@ namespace TamagotchiAPI.Controllers
         public async Task<ActionResult<Pet>> PostPet(Pet pet)
         {
             // Indicate to the database context we want to add this new record
+            pet.HappinessLevel = 0;
+            pet.HungerLevel = 0;
+            pet.Birthday = DateTime.Now;
+
             _context.Pets.Add(pet);
             await _context.SaveChangesAsync();
 
