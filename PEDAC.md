@@ -27,6 +27,9 @@ Name: string
 Birthday: DateTime
 HungerLevel: int
 HappinessLevel: int
+public List<Playtime> Playtimes { get; set; }
+public List<Feeding> Feedings { get; set; }
+public List<Scolding> Scoldings { get; set; }
 
 Playtime (Model)
 Id: int
