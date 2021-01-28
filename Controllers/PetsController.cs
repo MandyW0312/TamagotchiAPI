@@ -211,5 +211,25 @@ namespace TamagotchiAPI.Controllers
 
             return Ok(feedings);
         }
+
+        [HttpPost("{id}/scoldings")]
+        public async Task<ActionResult<Scolding>> ScoldingForPet(int id)
+        {
+            var pet = await _context.Pets.FindAsync(id);
+            if (pet == null)
+            {
+                return NotFound();
+            }
+            Scolding scoldings = new Scolding();
+            scoldings.PetId = pet.Id;
+            scoldings.When = DateTime.Now;
+
+            pet.HappinessLevel -= 5;
+
+            _context.Scoldings.Add(scoldings);
+            await _context.SaveChangesAsync();
+
+            return Ok(scoldings);
+        }
     }
 }
