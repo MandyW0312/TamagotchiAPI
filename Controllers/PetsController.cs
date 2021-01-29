@@ -38,6 +38,14 @@ namespace TamagotchiAPI.Controllers
             return await _context.Pets.OrderBy(row => row.Id).ToListAsync();
         }
 
+        [HttpGet("alive")]
+        public async Task<ActionResult<IEnumerable<Pet>>> GetAlivePets()
+        {
+            // Uses the database context in `_context` to request all of the Pets, sort
+            // them by row id and return them as a JSON array.
+            return await _context.Pets.Where(pet => pet.IsDead == false).ToListAsync();
+        }
+
         // GET: api/Pets/5
         //
         // Fetches and returns a specific pet by finding it by id. The id is specified in the
