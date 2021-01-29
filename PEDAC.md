@@ -54,3 +54,45 @@ Public DbSet<Pet> Pets {get; set;}
 Public DbSet<Playtime> Playtimes {get; set;}
 Public DbSet<Feeding> Feedings {get; set;}
 Public DbSet<Scolding> Scoldings {get; set;}
+
+Algorithm:
+
+POST /pets:
+The pets Birthday should default to the current DateTime
+HungerLevel defaults to 0
+HappinessLevel defaults to 0.
+
+POST /pets/{id}/playtimes:
+find the pet by id
+if the pet does not exist
+return Not Found
+Associate the pet to the Playtimes
+It should also create a new Playtime for this pet and the current time.
+add 5 to its happiness level
+add 3 to its hungry level.
+Add playtimes
+Save Changes
+return playtimes
+
+POST /pets/{id}/feedings:
+find the pet by id
+if the pet does not exist
+return Not Found
+Associate the pet to the Feedings
+It should also create a new Feeding for this pet and the current time.
+subtract 5 from its hungry level
+add 3 to its happiness level
+Add feedings
+Save Changes
+return feedings
+
+POST /pets/{id}/scoldings:
+find the pet by id
+if the pet does not exist
+return Not Found
+Associate the pet to the Scoldings
+It should also create a new Scolding for this pet and the current time.
+subtract 5 from its happiness level
+Add scoldings
+Save Changes
+return scoldings
