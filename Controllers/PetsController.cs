@@ -137,7 +137,7 @@ namespace TamagotchiAPI.Controllers
             pet.HungerLevel = 0;
             pet.Birthday = DateTime.Now;
             pet.IsDead = false;
-            pet.LastInteractedWithDate = DateTime.Today.AddDays(-4);
+            pet.LastInteractedWithDate = DateTime.Now;
 
             _context.Pets.Add(pet);
             await _context.SaveChangesAsync();
